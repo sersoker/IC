@@ -1,0 +1,53 @@
+         CLIPS (Quicksilver Beta 12/31/07)
+CLIPS> (deftemplate persona(slot nombre)(slot edad)(slot peso))
+CLIPS> (assert (persona(nombre pepe)(edad 21)(peso 70)))
+(assert (persona(nombre juan)(edad 51)(peso 70)))
+(assert (persona(nombre ana)(edad 51)(peso 70)))<Fact-1>
+CLIPS> (fatcs)
+
+[EXPRNPSR3] Missing function declaration for fatcs.
+CLIPS> (facts)
+f-0     (initial-fact)
+f-1     (persona (nombre pepe) (edad 21) (peso 70))
+For a total of 2 facts.
+CLIPS> (assert (persona(nombre juan)(edad 51)(peso 70)))
+<Fact-2>
+CLIPS> .(assert (persona(nombre ana)(edad 51)(peso 70)))
+.
+CLIPS> (deffacts persona 
+         (persona(nombre def1)(edad 18)(peso 80))
+         (persona(nombre def2)(edad 19)(peso 90))
+      )
+CLIPS> reset
+reset
+CLIPS> (reset)
+CLIPS> (fatcs)
+
+[EXPRNPSR3] Missing function declaration for fatcs.
+CLIPS> (facts)
+f-0     (initial-fact)
+f-1     (persona (nombre def1) (edad 18) (peso 80))
+f-2     (persona (nombre def2) (edad 19) (peso 90))
+For a total of 3 facts.
+CLIPS> (watch)
+[ARGACCES4] Function watch expected at least 1 argument(s)
+CLIPS> (watch facts)
+CLIPS> (modify 2 (nombre def1modi))
+<== f-2     (persona (nombre def2) (edad 19) (peso 90))
+==> f-3     (persona (nombre def1modi) (edad 19) (peso 90))
+<Fact-3>
+CLIPS> (unwach facts)
+
+[EXPRNPSR3] Missing function declaration for unwach.
+CLIPS> (unwatch facts)
+CLIPS> (modify 2 (nombre def1modi2))
+[PRNTUTIL1] Unable to find fact f-2.
+FALSE
+CLIPS> (modify 3 (nombre def1modi2))
+<Fact-4>
+CLIPS> (facts)
+f-0     (initial-fact)
+f-1     (persona (nombre def1) (edad 18) (peso 80))
+f-4     (persona (nombre def1modi2) (edad 19) (peso 90))
+For a total of 3 facts.
+CLIPS> 

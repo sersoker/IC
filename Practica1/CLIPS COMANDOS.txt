@@ -1,0 +1,2 @@
+X distinto de Y:
+(test (meq ?x ?y))

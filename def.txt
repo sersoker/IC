@@ -1,0 +1,14 @@
+(deftemplate persona(slot nombre)(slot edad)(slot peso))
+(assert (persona(nombre pepe)(edad 21)(peso 70)))
+(assert (persona(nombre juan)(edad 51)(peso 70)))
+(assert (persona(nombre ana)(edad 51)(peso 70)))
+
+(deffacts persona  
+(persona(nombre pepe)(edad 21)(peso 70))
+(persona(nombre juan)(edad 51)(peso 70))
+(persona(nombre ana)(edad 51)(peso 70))
+)
+
+(reset)
+
+

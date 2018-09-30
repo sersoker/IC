@@ -1,0 +1,21 @@
+         CLIPS (Quicksilver Beta 12/31/07)
+CLIPS> (deftemplate persona "comentario"
+(slot nombre)
+(slot edad))
+CLIPS> (assert (persona(nombre "pepe")(edad 21)))
+<Fact-1>
+CLIPS> (facts)
+f-0     (initial-fact)
+f-1     (persona (nombre "pepe") (edad 21))
+For a total of 2 facts.
+CLIPS> (assert (persona(nombew "juan")(edad 18)))
+
+[TMPLTDEF1] Invalid slot nombew not defined in corresponding deftemplate persona.
+CLIPS> (assert (persona(nombre "juan")(edad 18)))
+<Fact-2>
+CLIPS> (facts)
+f-0     (initial-fact)
+f-1     (persona (nombre "pepe") (edad 21))
+f-2     (persona (nombre "juan") (edad 18))
+For a total of 3 facts.
+CLIPS> 

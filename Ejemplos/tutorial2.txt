@@ -1,0 +1,23 @@
+         CLIPS (Quicksilver Beta 12/31/07)
+CLIPS> (deftemplate persona(slot nombre))
+CLIPS> (assert persona (nombre pepe))
+
+[PRNTUTIL2] Syntax Error:  Check appropriate syntax for RHS patterns.
+CLIPS> (assert (persona (nombre pepe)))
+<Fact-1>
+CLIPS> (assert (persona (nombre juan)(nombre ana)))
+
+[PRNTUTIL5] The slot nombre has already been parsed.
+CLIPS> (assert (persona (nombre juan))(persona (nombre ana)))
+<Fact-3>
+CLIPS> (facts)
+f-0     (initial-fact)
+f-1     (persona (nombre pepe))
+f-2     (persona (nombre juan))
+f-3     (persona (nombre ana))
+For a total of 4 facts.
+CLIPS> (modify 1 (nombre pepe2))
+<Fact-4>
+CLIPS> (duplicate 2 (nombre duplicado1))
+<Fact-5>
+CLIPS> 

@@ -1,0 +1,108 @@
+         CLIPS (Quicksilver Beta 12/31/07)
+CLIPS> (deftemplate persona(slot nombre)(slot edad)(slot peso))
+CLIPS> (deffacts persona  
+(persona(nombre pepe)(edad 21)(peso 70))
+(persona(nombre juan)(edad 51)(peso 70))
+(persona(nombre ana)(edad 51)(peso 70))
+)
+CLIPS> (facts)
+f-0     (initial-fact)
+For a total of 1 fact.
+CLIPS> (reset)
+CLIPS> (facts)
+f-0     (initial-fact)
+f-1     (persona (nombre pepe) (edad 21) (peso 70))
+f-2     (persona (nombre juan) (edad 51) (peso 70))
+f-3     (persona (nombre ana) (edad 51) (peso 70))
+For a total of 4 facts.
+CLIPS> (deftemplate urgencia (slot tipo))
+CLIPS> (deftemplate respuesta (slot accion))
+CLIPS> (clear)
+CLIPS> (deftemplate urgencia (slot tipo))
+CLIPS> (deftemplate respuesta (slot accion))
+CLIPS> (defrule urgencia-incendio "una regla ejemplo"
+         (urgencia (tipo incendio) )
+         =>
+         (assert (respuesta
+                  accion activar-sistema-anti-incendio)))
+
+[PRNTUTIL2] Syntax Error:  Check appropriate syntax for deftemplate pattern.
+
+ERROR:
+(defrule MAIN::urgencia-incendio "una regla ejemplo"
+   (urgencia (tipo incendio))
+   =>
+   (assert (respuesta accion
+CLIPS> (defrule urgencia-incendio "una regla ejemplo"
+         (urgencia (tipo incendio) )
+         =>
+         (assert (respuesta
+                  (accion activar-sistema-anti-incendio))))
+CLIPS> (rules)
+urgencia-incendio
+For a total of 1 defrule.
+CLIPS> ; Emcabezado de una regla
+(defrule urgencia-incendio "una regla ejemplo"
+;Patrones
+         (urgencia (tipo incendio) )
+;Flecha Entonces
+         =>
+;Acciones
+         (assert (respuesta
+                  (accion activar-sistema-anti-incendio))))         
+CLIPS> (rules)
+urgencia-incendio
+For a total of 1 defrule.
+CLIPS> ; Emcabezado de una regla
+(defrule urgencia-inundacion "una regla ejemplo2"
+;Patrones
+         (urgencia (tipo inundacion) )
+;Flecha Entonces
+         =>
+;Acciones
+         (assert (respuesta
+                  (accion activar-sistema-anti-inundacion))))            
+CLIPS> (rules)
+urgencia-incendio
+urgencia-inundacion
+For a total of 2 defrules.
+CLIPS> (assert (urgencia (tipo incendio))
+)
+<Fact-1>
+CLIPS> (run)
+CLIPS> (deftemplate sistema-extintor (slot tipo) (slot estado))
+CLIPS> (defrule incendio-clase-A-urgencia
+      (urgencia (tipo incendio-clase-A))
+      (sistema-extintor (tipo aspersar-agua)(estado apagado))
+   =>
+      (printout t "activar contra indencios de agua" crlf))
+CLIPS> (defrule incendio-clase-B-urgencia
+      (urgencia (tipo incendio-clase-B))
+      (sistema-extintor (tipo dioxido-carbono)(estado apagado))
+   =>
+      (printout t "usar extintor carbono" crlf))  
+CLIPS> (rules)
+urgencia-incendio
+urgencia-inundacion
+incendio-clase-A-urgencia
+incendio-clase-B-urgencia
+For a total of 4 defrules.
+CLIPS> (assert urgencia (tipo incendio-clase-A))
+
+[PRNTUTIL2] Syntax Error:  Check appropriate syntax for RHS patterns.
+CLIPS> (assert (urgencia (tipo incendio-clase-A))   )
+<Fact-3>
+CLIPS> (assert(sistema-extintor (tipo aspersar-agua)(estado apagado)))
+<Fact-4>
+CLIPS> (run)
+activar contra indencios de agua
+CLIPS> (assert (urgencia (tipo incendio-clase-B))   )
+<Fact-5>
+CLIPS> (run)
+CLIPS> (assert(sistema-extintor (tipo dioxido de carbono)(estado encendido)))
+
+[TMPLTDEF2] The single field slot tipo can only contain a single field value.
+CLIPS> (assert(sistema-extintor (tipo dioxido-carbono)(estado encendido)))   
+<Fact-6>
+CLIPS> (run)
+CLIPS> 
